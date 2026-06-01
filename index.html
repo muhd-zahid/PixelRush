@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PixelRush</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #0a0a1a; overflow: hidden; }
+    canvas { display: block; }
+
+    .screen {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      z-index: 10;
+      background: #0a0a1aee;
+    }
+
+    .screen.hidden { display: none; }
+
+    h1 { font-size: 56px; color: #00e5ff;
+      text-shadow: 0 0 20px #00e5ff; margin-bottom: 10px; }
+    h2 { font-size: 48px; color: #ff4444;
+      text-shadow: 0 0 20px #ff4444; margin-bottom: 15px; }
+    h3 { font-size: 28px; color: #ffdd57; margin-bottom: 10px; }
+    p { font-size: 20px; margin-bottom: 10px; }
+
+    button {
+      padding: 14px 40px; font-size: 18px;
+      background: #00e5ff; color: #0a0a1a;
+      border: none; border-radius: 30px;
+      cursor: pointer; font-weight: bold;
+      margin-top: 15px; transition: all 0.2s;
+    }
+    button:hover { background: #fff; transform: scale(1.05); }
+    #highScoreDisplay { color: #ffdd57; font-size: 16px; margin-top: 10px; }
+    #leaderboardList { list-style: none; padding: 0; font-size: 18px; line-height: 2; }
+  </style>
+</head>
+<body>
+
+  <canvas id="gameCanvas"></canvas>
+
+  <div id="menuScreen" class="screen">
+    <h1>⚡ PixelRush</h1>
+    <p>Run. Jump. Survive.</p>
+    <button id="startBtn">▶ Start Game</button>
+    <div id="highScoreDisplay">Best: 0</div>
+    <button id="viewLeaderboardBtn">🏆 Leaderboard</button>
+  </div>
+
+  <div id="gameOverScreen" class="screen hidden">
+    <h2>💀 Game Over</h2>
+    <p>Score: <span id="finalScore">0</span></p>
+    <p>Best: <span id="bestScore">0</span></p>
+    <button id="restartBtn">🔄 Play Again</button>
+  </div>
+
+  <div id="leaderboardSection" class="screen hidden">
+    <h3>🏆 Leaderboard</h3>
+    <ol id="leaderboardList"></ol>
+    <button id="closeLeaderboardBtn">✖ Close</button>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
+
